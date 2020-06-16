@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.user.dao.UserDao">
+    <!--配置查询所有,id与dao方法名称一致，resultType为javabean位置-->
+    <select id="findAll" resultType="com.user.domain.User">
+        select * from user
+    </select>
+
+    <insert id="saveUser" parameterType="com.user.domain.User">
+    insert into user(username,birthday,sex,address) values (#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <select id="UserCount" resultType="int">
+        SELECT COUNT(*) from user
+    </select>
+
+    <select id="findByVo" resultType="com.user.domain.User" parameterType="com.user.domain.QueryVo">
+        select * from user where username like #{user.username}
+    </select>
+</mapper>
